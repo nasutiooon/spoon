@@ -1,0 +1,18 @@
+{:spoon/http-server  {:port #profile {:default 8080
+                                      :test    8081}}
+ :spoon/guardian     {:algorithm :hs512
+                      :secret    "secretkeywordforguardian"}
+ :spoon/passport     {:algorithm :hs512
+                      :secret    "secretkeywordforpassport"}
+ :spoon/db           {:kind :pg
+                      :pg   {:pool-spec {:adapter       "postgresql"
+                                         :server-name   "localhost"
+                                         :port-number   5432
+                                         :username      "faris"
+                                         :password      ""
+                                         :database-name #profile {:default "spoon"
+                                                                  :test    "spoon_test"}}
+                             :migration {:store         :database
+                                         :migration-dir "spoon/pg/migration"}}}
+ :spoon/spoon-client {:port         #ref [:spoon/http-server :port]
+                      :content-type :json}}
