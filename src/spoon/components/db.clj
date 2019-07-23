@@ -10,7 +10,7 @@
    :db-migrator  {:pg g.migratus/migratus}
    :db-generator {:pg g.pg/postgres-generator}})
 
-(defn use-catalogue
+(defn db-part
   [instance-kind {:keys [kind] :as config}]
   (if-let [ctor (get-in catalogue [instance-kind kind])]
     (-> config (get kind) ctor)

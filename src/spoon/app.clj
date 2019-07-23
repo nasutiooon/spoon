@@ -18,10 +18,10 @@
        :http-server (g.aleph/http-server http-server)
        :ring-handler (g.ring/ring-head)
        :ring-router (c.router/ring-router ring-router)
-       :db (c.db/use-catalogue :db db)
-       :db-impl (c.db/use-catalogue :db-impl db)
-       :db-migrator (c.db/use-catalogue :db-migrator db)
-       :db-generator (c.db/use-catalogue :db-generator db)
+       :db (c.db/db-part :db db)
+       :db-impl (c.db/db-part :db-impl db)
+       :db-migrator (c.db/db-part :db-migrator db)
+       :db-generator (c.db/db-part :db-generator db)
        :guardian (g.jwt/jwt-encoder guardian)
        :passport (g.jwt/jwt-encoder passport)
        :db-meta (c.db/db-meta)
@@ -33,6 +33,6 @@
         :ring-handler [:ring-router :db-meta :signer-meta]
         :ring-router  [:main-routes :user-routes]
         :db           [:db-impl]
-        :db-meta      [:db]
         :db-migrator  [:db]
+        :db-meta      [:db]
         :signer-meta  [:guardian :passport]})))
