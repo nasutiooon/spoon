@@ -8,7 +8,6 @@
    [spoon.components.router :as c.router]
    [spoon.components.signer :as c.signer]
    [spoon.edge.pg :as eg.pg]
-   [spoon.edge.ring :as eg.ring]
    [spoon.routes.main :as r.main]
    [spoon.routes.user :as r.user]))
 
@@ -22,9 +21,9 @@
        :db-impl (c.db/db-part :db-impl db)
        :db-migrator (c.db/db-part :db-migrator db)
        :db-generator (c.db/db-part :db-generator db)
+       :db-meta (c.db/db-part :db-meta db)
        :guardian (g.jwt/jwt-encoder guardian)
        :passport (g.jwt/jwt-encoder passport)
-       :db-meta (c.db/db-meta)
        :signer-meta (c.signer/signer-meta)
        :main-routes (r.main/main-routes-hook)
        :user-routes (r.user/user-routes-hook))
