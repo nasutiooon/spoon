@@ -62,8 +62,8 @@
   (map->EphemeralDbGeneratorRunner  {}))
 
 (defn- db-generator-runner
-  [{:keys [temporary?]}]
-  (if temporary?
+  [{:keys [generate]}]
+  (if (:temporary? generate)
     (ephemeral-db-generator-runner)
     (durable-db-generator-runner)))
 
